@@ -13,7 +13,7 @@ class Nested extends React.Component {
     };
     render() {
         return (
-            <JsonTable json={json} />
+            <JsonTable />
         )
     }
 }

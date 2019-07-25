@@ -1,26 +1,27 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Home from "./Home";
+// import Home from "./Home";
+import {Nav} from "react-bootstrap";
+import CsvParser from "./components/csvParser";
 
 
 function App() {
   return (
     <div className="App">
       <Router>
+          <Nav className="justify-content-center" activeKey="/">
+              <Nav.Item>
+                  <Nav.Link href="/">Home</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                  <Nav.Link href="/about">About</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                  <Nav.Link href="/topics">Topics</Nav.Link>
+              </Nav.Item>
+          </Nav>
         <div>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/topics">Topics</Link>
-            </li>
-          </ul>
-
           <hr />
 
           <Route exact path="/" component={Home} />
@@ -31,6 +32,12 @@ function App() {
 
     </div>
   );
+}
+
+function Home() {
+    return (
+        <CsvParser></CsvParser>
+    );
 }
 
 

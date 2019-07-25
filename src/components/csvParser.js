@@ -1,12 +1,9 @@
 import { CSVReader } from 'react-papaparse';
 import React, { Component } from 'react';
-// import Mailer from '../handlers/mailer';
-// import EmailTemplate from '../emailTemplate';
 import {JsonTable} from "react-json-to-html";
 import CheckData from "../handlers/checkData";
-
-// let mailer = new Mailer();
-// let emailTemplate = new EmailTemplate();
+import EmailForm from "./emailForm";
+import Button from "react-bootstrap/Button";
 
 class CsvParser extends Component{
     constructor(props) {
@@ -21,36 +18,15 @@ class CsvParser extends Component{
     updateData(result) {
         const data = result.data;
         console.log("done");
-        // Here this is available and we can call this.setState (since it's binded in the constructor)
+        // Here this is available and we can call this.setState (since it's bound in the constructor)
         this.setState({data: data}); // or shorter ES syntax: this.setState({ data });
     }
     handleReadCSV = (data) => {
-        // Here this is available and we can call this.setState (since it's binded in the constructor)
+        // Here this is available and we can call this.setState (since it's bound in the constructor)
         this.setState({data: data, send_mail: true});
         // this.updateData(data);
         console.log(data);
-        // for(let i=0; i<data.length; i++){
-        //     let emailBody = emailTemplate.createEmailTemplate(data[i]);
-        //     let mailObj = {
-        //         body: emailBody, email: data[i]["Email"],
-        //         subject: emailTemplate.subject,
-        //         from: emailTemplate.from
-        //     };
-        //     mailer.sendMail(mailObj);
-        // }
     };
-
-    // handleSendMail = (data) => {
-    //     for(let i=0; i<data.length; i++){
-    //         let emailBody = emailTemplate.createEmailTemplate(data[i]);
-    //         let mailObj = {
-    //             body: emailBody, email: data[i]["Email"],
-    //             subject: emailTemplate.subject,
-    //             from: emailTemplate.from
-    //         };
-    //         mailer.sendMail(mailObj);
-    //     }
-    // }
 
     handleOnError = (err, file, inputElem, reason) => {
         console.log(err);
@@ -64,7 +40,7 @@ class CsvParser extends Component{
 
     render() {
         return (
-            <div>
+            <div className="container-fluid">
                 <CSVReader
                     onFileLoaded={this.handleReadCSV}
                     inputRef={this.fileInput}
@@ -72,17 +48,24 @@ class CsvParser extends Component{
                     onError={this.handleOnError}
                     configOptions={{skipEmptyLines: true, header: true}}
                 />
-
-                <div className="row">
-                    <div className="col col-md-2">
-                        <button onClick={this.handleImportOffer}>Import</button>
+                <div className="row container-fluid">
+                    <div className="col-md-6">
+                        <EmailForm/>
                     </div>
-                    <div className="col col-md-10">
-                        <JsonTable
-                            json={this.state.data}
-                        />
+                </div>
+                <hr></hr>
+                <div className="row container-fluid">
+                    <div className="col col-md-6">
+                        <Button onClick={this.handleImportOffer}>Import</Button>
+                    </div>
+                    <div className="col col-md-6">
                         <CheckData data={this.state.data} checkedData={true} />
                     </div>
+                </div>
+                <div className="container-fluid">
+                    <JsonTable
+                        json={this.state.data}
+                    />
                 </div>
             </div>
         );

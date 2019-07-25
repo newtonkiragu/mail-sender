@@ -1,9 +1,9 @@
 import * as settings from "./settings";
 
 function EmailTemplate() {
-    this.filePath="data.csv";
-    this.subject="Status Email";
-    this.from=settings.EMAIL_NAME;
+    this.subject="A quick Status Update!";
+    this.from = settings.EMAIL_NAME;
+
 }
 
 EmailTemplate.prototype.createEmailTemplate = function (jsonObject) {
@@ -35,8 +35,8 @@ EmailTemplate.prototype.createEmailTemplate = function (jsonObject) {
     Your attendance out of 100 is ${jsonObject["Attendance"]}.
       
   As for your IPs:
-    IP1 out of 31 you have ${jsonObject["IP1 /31"]}.
-    IP2 out of 22 you have ${jsonObject["IP2 /22"]}.
+    IP1 out of 12 you have ${jsonObject["IP1/12"]}.
+    IP2 out of 12 you have ${jsonObject["IP2/12"]}.
     IP3 out of 22 you have ${jsonObject["IP3 /22"]}.
     IP4 out of 28 you have ${jsonObject["IP4 /28"]}.
       
