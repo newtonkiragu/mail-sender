@@ -21,7 +21,9 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "restify": "^8.3.3",
-    "restify-cors-middleware": "^1.1.1"
+    "restify-cors-middleware": "^1.1.1",
+    "styled-components": "^4.4.1",
+    "styled-theming": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
